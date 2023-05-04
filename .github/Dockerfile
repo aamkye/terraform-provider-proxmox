@@ -1,13 +1,14 @@
 FROM debian:stable-slim
 
-ARG TERRAFORM_VERSION=0.13.5
+ARG TERRAFORM_VERSION
 
 RUN \
   apt-get update -y && \
-  apt-get install unzip wget -y
+  apt-get install unzip -y \
+  apt-get install wget -y
 
 
-RUN wget --progress=dot:mega https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+RUN wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 
 RUN \
   unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
